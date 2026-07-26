@@ -1,4 +1,13 @@
-# Inference script for predictive maintenance model
+import joblib
+import pandas as pd
+import json
 
-if __name__ == '__main__':
-    print('Inference script placeholder')
+def init():
+    global model
+    model = joblib.load("models/xgb_v1.pkl")
+
+def run(raw_data):
+    data = json.loads(raw_data)
+    df = pd.DataFrame(data["instances"])
+    preds = model.predict(df)
+    return {"predictions": preds.tolist()}

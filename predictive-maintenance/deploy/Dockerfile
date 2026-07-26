@@ -1,6 +1,10 @@
-# Dockerfile placeholder for deployment
-FROM python:3.12-slim
+FROM python:3.9-slim
+
 WORKDIR /app
-COPY . /app
-RUN pip install fastapi uvicorn
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+
+COPY models/xgb_v1.pkl ./models/xgb_v1.pkl
+COPY inference.py .
+
+RUN pip install joblib pandas xgboost scikit-learn kserve
+
+CMD ["python", "inference.py"]
