@@ -24,6 +24,8 @@ jobs:
         activate-environment: xgb-env
         environment-file: predictive-maintenance/env.yaml
         python-version: 3.9
+      run: |
+        conda list | grep xgboost
 
     - name: Train model
       run: |
