@@ -21,6 +21,10 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r predictive-maintenance/requirements.txt
+    
+    - name: Prepare model directory
+      run: mkdir -p predictive-maintenance/models
+
     - name: Train model
       run: |
         python predictive-maintenance/src/train.py predictive-maintenance/data/engine_data.csv
