@@ -18,10 +18,12 @@ jobs:
       with:
         python-version: '3.9'
 
-    - name: Setup Conda environment
-      run: |
-        conda env create -f predictive-maintenance/env.yaml
-        conda activate xgb-env
+     name: Install Miniconda
+     uses: conda-incubator/setup-miniconda@v2
+     with:
+      activate-environment: xgb-env
+      environment-file: predictive-maintenance/env.yaml
+      python-version: 3.9
 
 
     - name: Verify Miniconda
