@@ -7,11 +7,11 @@ ws = Workspace.from_config(path="config.json")
 
 # Register model
 model = Model.register(workspace=ws,
-                       model_path="models/xgb_v1.pkl",
+                       model_path="predictive-maintenance/models/xgb_v1.pkl",
                        model_name="predictive-maintenance")
 
 # Define environment
-env = Environment.from_conda_specification(name="xgb-env", file_path="environment.yml")
+env = Environment.from_conda_specification(name="xgb-env", file_path="predictive-maintenance/requirements.txt")
 
 # Define inference config
 inference_config = InferenceConfig(entry_script="score.py", environment=env)

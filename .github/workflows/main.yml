@@ -31,4 +31,4 @@ jobs:
 
     - name: Deploy model
       run: |
-        python predictive-maintenance/src/deploy.py
+        python predictive-maintenance/deploy/deploy.py
