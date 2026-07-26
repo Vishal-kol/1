@@ -27,7 +27,7 @@ jobs:
 
     - name: Setup Conda environment
       run: |
-        conda env create -f env.yaml
+        conda env create -f predictive-maintenance/env.yaml
         conda activate xgb-env   # use the name defined in env.yaml
 
 
