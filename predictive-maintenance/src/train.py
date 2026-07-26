@@ -11,7 +11,7 @@ from sklearn.metrics import accuracy_score
 import joblib
 
 # Step 1: Load dataset (NASA turbofan dataset or any CSV)
-data = pd.read_csv("engine_data.csv")  # replace with your dataset
+data = pd.read_csv("predictive-maintenance/data/engine_data.csv")  # replace with your dataset
 
 # Step 2: Split features and labels
 X = data.drop("label", axis=1)   # sensor readings
