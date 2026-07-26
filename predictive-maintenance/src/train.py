@@ -29,5 +29,5 @@ y_pred = model.predict(X_test)
 print("Accuracy:", accuracy_score(y_test, y_pred))
 
 # Step 6: Save model
-joblib.dump(model, "../models/xgb_v1.pkl")
+joblib.dump(model, ".predictive-maintenance/models/xgb_v1.pkl")
 
