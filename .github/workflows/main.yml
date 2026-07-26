@@ -18,11 +18,20 @@ jobs:
       with:
         python-version: '3.9'
 
-    - name: Install dependencies
-      run: |
-        pip install azureml-core azureml-defaults
-        pip install -r requirements.txt
+    - name: Install Miniconda
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+         activate-environment: xgb-env
+         environment-file: env.yaml
+         python-version: 3.9
 
+    - name: Setup Conda environment
+      run: |
+        conda env create -f env.yaml
+        conda activate xgb-env   # use the name defined in env.yaml
+
+
+ 
     - name: Train model
       run: |
         python src/train.py data/engine_data.csv
