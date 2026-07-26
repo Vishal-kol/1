@@ -24,6 +24,8 @@ jobs:
         activate-environment: xgb-env
         environment-file: predictive-maintenance/env.yaml
         python-version: 3.9
+
+    - name: Verify Miniconda
       run: |
         conda list | grep xgboost
 
