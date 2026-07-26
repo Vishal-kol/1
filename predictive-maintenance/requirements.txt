@@ -1,0 +1,6 @@
+azureml-core
+azureml-defaults
+xgboost
+pandas
+scikit-learn
+joblib
