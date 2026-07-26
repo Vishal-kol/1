@@ -3,7 +3,7 @@ from azureml.core.model import InferenceConfig
 from azureml.core.webservice import AciWebservice
 
 # Load workspace
-ws = Workspace.from_config(path="config.json")
+ws = Workspace.from_config(path="predictive-maintenance/config.json")
 
 # Register model
 model = Model.register(workspace=ws,
@@ -14,7 +14,7 @@ model = Model.register(workspace=ws,
 env = Environment.from_conda_specification(name="xgb-env", file_path="predictive-maintenance/requirements.txt")
 
 # Define inference config
-inference_config = InferenceConfig(entry_script="score.py", environment=env)
+inference_config = InferenceConfig(entry_script="predictive-maintenance/src/score.py", environment=env)
 
 # Define deployment config
 deployment_config = AciWebservice.deploy_configuration(cpu_cores=1, memory_gb=1)
