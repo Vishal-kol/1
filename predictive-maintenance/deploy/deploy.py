@@ -6,6 +6,9 @@ from azureml.core.webservice import AciWebservice
 # Load workspace
 from azureml.core.authentication import ServicePrincipalAuthentication
 
+print("Tenant ID:", os.getenv("AZURE_TENANT_ID"))
+
+
 auth = ServicePrincipalAuthentication(
     tenant_id=os.getenv("AZURE_TENANT_ID"),
     service_principal_id=os.getenv("AZURE_CLIENT_ID"),
