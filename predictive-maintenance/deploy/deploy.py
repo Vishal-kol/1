@@ -1,3 +1,4 @@
+import os
 from azureml.core import Workspace, Model, Environment
 from azureml.core.model import InferenceConfig
 from azureml.core.webservice import AciWebservice
