@@ -10,6 +10,7 @@ auth = ServicePrincipalAuthentication(
     tenant_id=os.getenv("AZURE_TENANT_ID"),
     service_principal_id=os.getenv("AZURE_CLIENT_ID"),
     service_principal_password=os.getenv("AZURE_CLIENT_SECRET")
+    authority=f"https://login.microsoftonline.com/{os.getenv('AZURE_TENANT_ID')}"
 )
 ws = Workspace(subscription_id=os.getenv("AZURE_SUBSCRIPTION_ID"),
                resource_group="AI-workspace",
