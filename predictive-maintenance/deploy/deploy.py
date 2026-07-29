@@ -3,7 +3,17 @@ from azureml.core.model import InferenceConfig
 from azureml.core.webservice import AciWebservice
 
 # Load workspace
-ws = Workspace.from_config(path="predictive-maintenance/config.json")
+from azureml.core.authentication import ServicePrincipalAuthentication
+
+auth = ServicePrincipalAuthentication(
+    tenant_id=os.getenv("AZURE_TENANT_ID"),
+    service_principal_id=os.getenv("AZURE_CLIENT_ID"),
+    service_principal_password=os.getenv("AZURE_CLIENT_SECRET")
+)
+ws = Workspace(subscription_id=os.getenv("AZURE_SUBSCRIPTION_ID"),
+               resource_group="AI-workspace",
+               workspace_name="mlops",
+               auth=auth)
 
 # Register model
 model = Model.register(workspace=ws,
