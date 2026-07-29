@@ -13,6 +13,9 @@ jobs:
     - name: Checkout repo
       uses: actions/checkout@v3
 
+    - name: Clear old workspace
+      run: |
+        rm -rf predictive-maintenance/deploy/__pycache__
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
