@@ -1,7 +1,7 @@
 import os
 from azureml.core import Workspace, Model, Environment
 from azureml.core.model import InferenceConfig
-from azureml.core.webservice import AciWebservice
+from azureml.core.webservice import AciWebservice, Webservice
 
 # Load workspace
 from azureml.core.authentication import ServicePrincipalAuthentication
@@ -37,9 +37,17 @@ inference_config = InferenceConfig(entry_script="predictive-maintenance/src/scor
 # Define deployment config
 deployment_config = AciWebservice.deploy_configuration(cpu_cores=1, memory_gb=1)
 
+service_name = "predictive-maintenance-service"
+
+# Delete existing service if it already exists
+if Webservice.name_exists(workspace=ws, name=service_name):
+    existing_service = Webservice(workspace=ws, name=service_name)
+    print(f"Deleting existing service: {service_name}")
+    existing_service.delete()
+
 # Deploy service
 service = Model.deploy(workspace=ws,
-                       name="predictive-maintenance-service",
+                       name=service_name,
                        models=[model],
                        inference_config=inference_config,
                        deployment_config=deployment_config)
