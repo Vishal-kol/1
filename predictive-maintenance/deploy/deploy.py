@@ -47,4 +47,4 @@ service = Model.deploy(workspace=ws,
 service.wait_for_deployment(show_output=True)
 print("Scoring URI:", service.scoring_uri)
 
-#gmail
+#gmail..
