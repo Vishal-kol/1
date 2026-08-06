@@ -11,3 +11,5 @@ def run(raw_data):
     df = pd.DataFrame(data["instances"])
     preds = model.predict(df)
     return {"predictions": preds.tolist()}
+
+    #gh
