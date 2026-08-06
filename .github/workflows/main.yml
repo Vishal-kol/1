@@ -1,4 +1,4 @@
-name: Train and Deploy Model.2
+name: Train and Deploy Model
 
 on:
   push:
@@ -9,16 +9,15 @@ jobs:
   train-and-deploy:
     runs-on:
       - self-hosted
-      - windows
-      - x64
 
     steps:
     - name: Checkout repo
       uses: actions/checkout@v3
 
     - name: Clear old workspace
+      shell: powershell
       run: |
-        rm -rf predictive-maintenance/deploy/__pycache__
+        Remove-Item -Path "predictive-maintenance/deploy/__pycache__" -Recurse -Force -ErrorAction SilentlyContinue
     - name: Setup Python
       uses: actions/setup-python@v4
       with:
@@ -37,7 +36,9 @@ jobs:
         pip install -r predictive-maintenance/requirements.txt
     
     - name: Prepare model directory
-      run: mkdir -p predictive-maintenance/models
+      shell: powershell
+      run: |
+        New-Item -ItemType Directory -Path "predictive-maintenance/models" -Force | Out-Null
 
     - name: Train model
       run: |
